@@ -1,0 +1,36 @@
+{
+  "name": "next-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Boboandhaifeng/next-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Boboandhaifeng/next-demo/issues"
+  },
+  "homepage": "https://github.com/Boboandhaifeng/next-demo#readme",
+  "devDependencies": {
+    "@types/node": "^12.7.2",
+    "antd": "^3.22.0",
+    "babel-plugin-import": "^1.12.0",
+    "less": "^3.10.2",
+    "null-loader": "^3.0.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "@zeit/next-less": "^1.0.1",
+    "next": "^9.0.4",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  }
+}
