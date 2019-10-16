@@ -1,37 +1,35 @@
-import App, {Container} from 'next/app';
-// import Layout from '../components/Layout';
-// import { RouterTitle } from '../constants/ConstTypes';
+import React from 'react'
+import {Provider} from 'react-redux'
+import App, {Container} from 'next/app'
+import withRedux from 'next-redux-wrapper'
+import withReduxSaga from 'next-redux-saga'
+import configureStore from '../redux/store'
+ 
+export interface  Iprops {
+  store: object
+}
 
-export default class MyApp extends App {
- constructor(props) {
-    super(props);
-    const { Component, pageProps, router } = props;
-    this.state = { Component, pageProps, router };
-    // console.log(props, this.state)
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.Component !== prevState.Component
-      || nextProps.pageProps !== prevState.pageProps
-      || nextProps.router !== prevState.router) {
-      return {
-        Component: nextProps.Component,
-        pageProps: nextProps.pageProps,
-        router: nextProps.router
-      };
+class ExampleApp extends App <Iprops, {}> {
+  static async getInitialProps({Component, ctx}) {
+    let pageProps = {}
+ 
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx)
     }
-    return null;
+ 
+    return {pageProps}
   }
-  
-  render () {
-    const { Component, pageProps } = this.props;
-    
+ 
+  render() {
+    const {Component, pageProps, store} = this.props
     return (
       <Container>
-        {/* <Layout title='test'> */}
+        <Provider store={store}>
           <Component {...pageProps} />
-        {/* </Layout> */}
+        </Provider>
       </Container>
-    );
+    )
   }
 }
+ 
+export default withRedux(configureStore)(withReduxSaga(ExampleApp))
